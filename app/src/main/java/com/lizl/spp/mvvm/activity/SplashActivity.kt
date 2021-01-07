@@ -9,7 +9,11 @@ import android.util.Log
 import com.blankj.utilcode.util.ActivityUtils
 import com.lizl.spp.R
 import com.lizl.spp.databinding.ActivitySplashBinding
+import com.lizl.spp.module.appinfo.util.AppInfoUtil
 import com.lizl.spp.mvvm.base.BaseActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash)
@@ -22,11 +26,21 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
         if (hasUsagePermission())
         {
-            ActivityUtils.startActivity(MainActivity::class.java)
+            onPermissionGet()
         }
         else
         {
             requestUsagePermission()
+        }
+    }
+
+    private fun onPermissionGet()
+    {
+        GlobalScope.launch {
+            AppInfoUtil.init()
+            GlobalScope.launch(Dispatchers.Main) {
+                ActivityUtils.startActivity(MainActivity::class.java)
+            }
         }
     }
 
@@ -53,7 +67,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
             else
             {
-                requestUsagePermission()
+                onPermissionGet()
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
