@@ -1,7 +1,8 @@
-package com.lizl.spp
+package com.lizl.spp.mvvm.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lizl.spp.R
 
 class MainActivity : AppCompatActivity()
 {
