@@ -19,7 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main)
     override fun initData()
     {
         AppInfoUtil.obAppInfoList().observe(this, {
-            appInfoListAdapter.setDiffNewData(it)
+            appInfoListAdapter.replaceData(it)
         })
     }
 

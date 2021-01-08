@@ -2,7 +2,6 @@ package com.lizl.spp.module.appinfo.util
 
 import android.app.usage.UsageStatsManager
 import android.content.Context
-import android.provider.SyncStateContract.Constants
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.Utils
@@ -24,7 +23,7 @@ object AppInfoUtil
                 val appInfoList = appInfoLiveData.value ?: return@observeForever
                 if (packageList !is Set<*>) return@observeForever
                 appInfoList.forEach { it.isLock = packageList.contains(it.appInfo.packageName) }
-                appInfoLiveData.postValue(appInfoList.toMutableList())
+                appInfoLiveData.postValue(appInfoList)
             }
         }
     }

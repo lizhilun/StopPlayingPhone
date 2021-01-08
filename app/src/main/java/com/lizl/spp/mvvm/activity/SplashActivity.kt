@@ -20,13 +20,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 {
     private val REQUEST_CODE_PACKAGE_USAGE_ACCESS = 516
 
-    override fun onResume()
+    override fun initView()
     {
-        super.onResume()
-
         if (hasUsagePermission())
         {
-            onPermissionGet()
+            onPermissionGranted()
         }
         else
         {
@@ -34,7 +32,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         }
     }
 
-    private fun onPermissionGet()
+    private fun onPermissionGranted()
     {
         GlobalScope.launch {
             AppInfoUtil.init()
@@ -67,7 +65,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
             }
             else
             {
-                onPermissionGet()
+                onPermissionGranted()
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
