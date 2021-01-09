@@ -1,4 +1,4 @@
-package com.lizl.news.mvvm.base
+package com.lizl.spp.mvvm.base
 
 import android.content.Context
 import android.os.Bundle
